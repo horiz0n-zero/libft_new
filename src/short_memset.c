@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stc_strcjoin.c                                  :+:      :+:    :+:   */
+/*   short_memset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/02 15:08:55 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/02 15:17:02 by afeuerst         ###   ########.fr       */
+/*   Created: 2018/03/02 15:24:10 by afeuerst          #+#    #+#             */
+/*   Updated: 2018/03/02 15:24:45 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char				*ft_stc_strcjoin(const char *s1, const char *s2,
-		const char c)
+void		short_memset(short *ptr, const short set, size_t len)
 {
-	static char		buffer[FT_STRJOIN_BUFFER];
-	char			*new;
-
-	new = buffer;
-	while (*s1)
-		*new++ = *s1++;
-	*new++ = c;
-	while (*s2)
-		*new++ = *s2++;
-	*new = 0;
-	return (buffer);
+	while (len--)
+		*ptr++ = set;
 }
