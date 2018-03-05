@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   definition.h                                       :+:      :+:    :+:   */
+/*   hashable_key.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/02 15:30:57 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/05 12:19:47 by afeuerst         ###   ########.fr       */
+/*   Created: 2018/03/05 13:21:44 by afeuerst          #+#    #+#             */
+/*   Updated: 2018/03/05 15:53:32 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINITION_H
-# define DEFINITION_H
+#include "libft.h"
 
-# define AS(ptr, type) ((type*)ptr)
-# define IS(raw, type) ((type)raw)
-# define ALLOCA(size) __builtin_alloca(size)
-# define ASINLINE __attribute__((always_inline)) inline
+size_t			hashable_key(const char *key)
+{
+	size_t		r;
+	size_t		g;
 
-#endif
+	r = 0;
+	while (*key)
+	{
+		r <<= 4;
+		r += *key++;
+		g = r & (0xF << (32 - 4));
+		if (!g)
+		{
+			r ^= g >> (32 - 8);
+			r ^= g;
+		}
+	}
+	return (r);
+}

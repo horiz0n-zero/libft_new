@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   definition.h                                       :+:      :+:    :+:   */
+/*   hashable_get.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/02 15:30:57 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/05 12:19:47 by afeuerst         ###   ########.fr       */
+/*   Created: 2018/03/05 13:29:08 by afeuerst          #+#    #+#             */
+/*   Updated: 2018/03/05 13:36:08 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINITION_H
-# define DEFINITION_H
+#include "libft.h"
 
-# define AS(ptr, type) ((type*)ptr)
-# define IS(raw, type) ((type)raw)
-# define ALLOCA(size) __builtin_alloca(size)
-# define ASINLINE __attribute__((always_inline)) inline
+void					*hashable_get(t_hashable *const hash, const char *key)
+{
+	const size_t		keyvalue = hashable_key(key);
+	t_hashable_packet	*pos;
 
-#endif
+	pos = hash->packets + (keyvalue % hash->size);
+	while (1)
+	{
+		if (!pos || !pos->src)
+			break ;
+		else if (pos->src && !ft_strcmp(pos->src, key))
+			return (pos->element);
+		else
+			pos = pos->next;
+	}
+	return (NULL);
+}
