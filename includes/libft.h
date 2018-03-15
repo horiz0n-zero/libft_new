@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/02 13:25:22 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/05 14:45:22 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/03/15 14:28:45 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void					long_memset(long *ptr, const long set, size_t len);
 void					pointer_memset(void **ptr, void *const set, size_t len);
 void					ft_memfrob(char *ptr, size_t len);
 int						ft_strcmp(register const char *s1, register const char *s2);
-
+int						get_parameter(int *const argc, void **const volatile argv, const int *const ref); // ref[256]
 
 #endif
