@@ -1,0 +1,29 @@
+__private_extern__
+	int32_t
+hash_string(
+		char *key)
+{
+	char *cp;
+	int32_t k;
+
+	cp = key;
+	k = 0;
+	while(*cp)
+		k = (((k << 1) + (k >> 14)) ^ (*cp++)) & 0x3fff;
+	return(k);
+}
+
+/*
+ * rnd() rounds v to a multiple of r.
+ */
+__private_extern__
+	uint64_t
+rnd(
+		uint64_t v,
+		uint64_t r)
+{
+	r--;
+	v += r;
+	v &= ~(int64_t)r;
+	return(v);
+}
